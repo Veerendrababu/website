@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - VR-TechProject Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    .services-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 120px 0 80px;
+      text-align: center;
+      color: white;
+    }
+
+    .services-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .services-hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .service-detail {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .service-detail:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .service-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .service-text h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-text p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .tech-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .tech-item i {
+      font-size: 2rem;
+      color: #4361ee;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid #4361ee;
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4361ee;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #4361ee;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-period {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .features-list li {
+      padding: 0.5rem 0;
+      color: #555;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4361ee;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .service-content {
+        grid-template-columns: 1fr;
+      }
+
+      .services-hero h1 {
+        font-size: 2rem;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2><i class="fas fa-graduation-cap"></i> VR-TechProject Solutions</h2>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Services Hero -->
+  <section class="services-hero">
+    <div class="container">
+      <h1>Our Services</h1>
+      <p>Comprehensive project solutions tailored for BTech and MTech students with cutting-edge technology and expert
+        guidance</p>
+    </div>
+  </section>
+
+  <!-- Software Development -->
+  <section class="service-detail">
+    <div class="container">
+      <div class="service-content">
+        <div class="service-text">
+          <h2><i class="fas fa-code"></i> Software Development</h2>
+          <p>We provide end-to-end software development services for academic projects, from web applications to desktop
+            software. Our team uses the latest technologies and best practices to deliver high-quality, scalable
+            solutions.</p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <i class="fab fa-react"></i>
+              <p>React.js</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-angular"></i>
+              <p>Angular</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-node-js"></i>
+              <p>Node.js</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-python"></i>
+              <p>Python</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-java"></i>
+              <p>Java</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-mobile-alt"></i>
+              <p>Mobile Apps</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-image">
+          <img src="https://via.placeholder.com/500x400/4361ee/ffffff?text=Software+Development"
+            alt="Software Development">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI & Machine Learning -->
+  <section class="service-detail">
+    <div class="container">
+      <div class="service-content">
+        <div class="service-image">
+          <img src="https://via.placeholder.com/500x400/f72585/ffffff?text=AI+%26+ML" alt="AI & Machine Learning">
+        </div>
+        <div class="service-text">
+          <h2><i class="fas fa-robot"></i> AI & Machine Learning</h2>
+          <p>Dive into the world of artificial intelligence with our comprehensive ML solutions. We help students
+            implement cutting-edge AI algorithms, neural networks, and intelligent systems for their academic projects.
+          </p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <i class="fas fa-brain"></i>
+              <p>TensorFlow</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-eye"></i>
+              <p>OpenCV</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-python"></i>
+              <p>PyTorch</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-chart-line"></i>
+              <p>Scikit-learn</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-language"></i>
+              <p>NLP</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-network-wired"></i>
+              <p>Deep Learning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded Systems -->
+  <section class="service-detail">
+    <div class="container">
+      <div class="service-content">
+        <div class="service-text">
+          <h2><i class="fas fa-microchip"></i> Embedded Systems & IoT</h2>
+          <p>Create innovative IoT solutions and embedded systems projects. From smart home automation to industrial IoT
+            applications, we provide complete hardware-software integration solutions.</p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <i class="fas fa-microchip"></i>
+              <p>Arduino</p>
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-raspberry-pi"></i>
+              <p>Raspberry Pi</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-wifi"></i>
+              <p>ESP32/ESP8266</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-thermometer-half"></i>
+              <p>Sensors</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-bluetooth"></i>
+              <p>Bluetooth</p>
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-cloud"></i>
+              <p>Cloud IoT</p>
+            </div>
+          </div>
+        </div>
+        <div class="service-image">
+          <img src="https://via.placeholder.com/500x400/4cc9f0/ffffff?text=IoT+%26+Embedded" alt="Embedded Systems">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="services" style="background: #f8f9fa;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Project Packages</h2>
+        <p>Choose the perfect package for your academic project needs</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Basic Package</h3>
+          <div class="price">₹15,000</div>
+          <div class="price-period">BTech Final Year</div>
+          <ul class="features-list">
+            <li>Complete project development</li>
+            <li>Source code with comments</li>
+            <li>Basic documentation</li>
+            <li>1 month support</li>
+            <li>Project presentation</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <h3>Premium Package</h3>
+          <div class="price">₹25,000</div>
+          <div class="price-period">MTech/Advanced BTech</div>
+          <ul class="features-list">
+            <li>Advanced project development</li>
+            <li>Complete source code</li>
+            <li>Detailed documentation</li>
+            <li>Research paper assistance</li>
+            <li>3 months support</li>
+            <li>Presentation training</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Enterprise Package</h3>
+          <div class="price">₹40,000</div>
+          <div class="price-period">Research Projects</div>
+          <ul class="features-list">
+            <li>Research-grade project</li>
+            <li>Publication assistance</li>
+            <li>Complete documentation</li>
+            <li>Patent filing support</li>
+            <li>6 months support</li>
+            <li>Industry mentorship</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3><i class="fas fa-graduation-cap"></i> VR-TechProject Solutions</h3>
+          <p>Your trusted partner for BTech and MTech project success.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Software Development</a></li>
+            <li><a href="#services">AI & Machine Learning</a></li>
+            <li><a href="#services">Embedded Systems</a></li>
+            <li><a href="#services">Data Analytics</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-phone"></i> +91 9494596314</p>
+          <p><i class="fas fa-envelope"></i> veerendra.embedded@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Khammam, Telangana</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 VR-TechProject Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

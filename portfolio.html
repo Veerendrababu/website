@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Portfolio - VR-TechProject Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    .portfolio-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 120px 0 80px;
+      text-align: center;
+      color: white;
+    }
+
+    .portfolio-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.5rem;
+      background: white;
+      color: #333;
+      border: 2px solid #e9ecef;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #4361ee;
+      color: white;
+      border-color: #4361ee;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .portfolio-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .portfolio-item.hidden {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .portfolio-image {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-image img {
+      transform: scale(1.1);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(247, 37, 133, 0.9));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .overlay-content {
+      text-align: center;
+      color: white;
+    }
+
+    .overlay-content i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-content {
+      padding: 1.5rem;
+    }
+
+    .portfolio-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .portfolio-description {
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .portfolio-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .project-level {
+      background: linear-gradient(135deg, #4361ee, #f72585);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .project-year {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tech-tag {
+      background: #f8f9fa;
+      color: #4361ee;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .portfolio-stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4361ee;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    .achievement-badges {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, #4361ee, #f72585);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-hero h1 {
+        font-size: 2rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-content {
+        margin: 10% auto;
+        width: 95%;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2><i class="fas fa-graduation-cap"></i> VR- TechProject Solutions</h2>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="portfolio.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Portfolio Hero -->
+  <section class="portfolio-hero">
+    <div class="container">
+      <h1>Project Portfolio</h1>
+      <p>Explore our successful BTech and MTech projects across various domains</p>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="projects" style="padding: 100px 0;">
+    <div class="container">
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="btech">BTech</button>
+        <button class="filter-btn" data-filter="mtech">MTech</button>
+        <button class="filter-btn" data-filter="ai">AI/ML</button>
+        <button class="filter-btn" data-filter="web">Web Development</button>
+        <button class="filter-btn" data-filter="iot">IoT</button>
+        <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid">
+        <!-- Smart Healthcare System -->
+        <div class="portfolio-item" data-category="mtech ai">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/4361ee/ffffff?text=Smart+Healthcare"
+              alt="Smart Healthcare System">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-heartbeat"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">MTech Project</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="portfolio-title">Smart Healthcare Management System</h3>
+            <p class="portfolio-description">AI-powered healthcare platform with patient monitoring, predictive
+              analytics, and automated diagnosis assistance.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Machine Learning</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-trophy"></i> Best Project Award</span>
+              <span class="badge"><i class="fas fa-star"></i> 98% Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- IoT Smart Home -->
+        <div class="portfolio-item" data-category="btech iot">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/f72585/ffffff?text=IoT+Smart+Home" alt="IoT Smart Home">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-home"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">BTech Project</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="portfolio-title">IoT-Based Smart Home Automation</h3>
+            <p class="portfolio-description">Complete home automation system with mobile app control, voice commands,
+              and energy monitoring.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Arduino</span>
+              <span class="tech-tag">ESP32</span>
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-bolt"></i> 40% Energy Savings</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blockchain Voting -->
+        <div class="portfolio-item" data-category="mtech web">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/4cc9f0/ffffff?text=Blockchain+Voting" alt="Blockchain Voting">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-vote-yea"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">MTech Project</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="portfolio-title">Blockchain-Based Voting System</h3>
+            <p class="portfolio-description">Secure and transparent voting platform using blockchain technology with
+              smart contracts.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Blockchain</span>
+              <span class="tech-tag">Solidity</span>
+              <span class="tech-tag">Web3.js</span>
+              <span class="tech-tag">React</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-shield-alt"></i> 100% Secure</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Face Recognition -->
+        <div class="portfolio-item" data-category="btech ai">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/7209b7/ffffff?text=Face+Recognition" alt="Face Recognition">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-user-check"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">BTech Project</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="portfolio-title">Real-time Face Recognition System</h3>
+            <p class="portfolio-description">Advanced facial recognition system with attendance tracking and security
+              features.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">OpenCV</span>
+              <span class="tech-tag">Deep Learning</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-tachometer-alt"></i> 95% Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-Commerce Platform -->
+        <div class="portfolio-item" data-category="btech web">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/ff6b6b/ffffff?text=E-Commerce" alt="E-Commerce Platform">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-shopping-cart"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">BTech Project</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="portfolio-title">Full-Stack E-Commerce Platform</h3>
+            <p class="portfolio-description">Complete e-commerce solution with payment integration, inventory
+              management, and analytics.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">MERN Stack</span>
+              <span class="tech-tag">Stripe API</span>
+              <span class="tech-tag">Redux</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-rocket"></i> Scalable Architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Banking App -->
+        <div class="portfolio-item" data-category="mtech mobile">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/51cf66/ffffff?text=Mobile+Banking" alt="Mobile Banking">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-mobile-alt"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">MTech Project</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="portfolio-title">Secure Mobile Banking Application</h3>
+            <p class="portfolio-description">Feature-rich mobile banking app with biometric authentication and advanced
+              security.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Encryption</span>
+              <span class="tech-tag">PostgreSQL</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-lock"></i> Bank-Grade Security</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Traffic Management -->
+        <div class="portfolio-item" data-category="mtech ai iot">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/ffd43b/ffffff?text=Traffic+AI" alt="Traffic Management">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-traffic-light"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">MTech Project</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="portfolio-title">AI-Powered Traffic Management</h3>
+            <p class="portfolio-description">Intelligent traffic control system using computer vision and machine
+              learning algorithms.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Computer Vision</span>
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">IoT Sensors</span>
+              <span class="tech-tag">Real-time Analytics</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-chart-line"></i> 30% Traffic Reduction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fitness Tracker -->
+        <div class="portfolio-item" data-category="btech mobile iot">
+          <div class="portfolio-image">
+            <img src="https://via.placeholder.com/400x250/845ec2/ffffff?text=Fitness+Tracker" alt="Fitness Tracker">
+            <div class="portfolio-overlay">
+              <div class="overlay-content">
+                <i class="fas fa-dumbbell"></i>
+                <p>View Details</p>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <div class="portfolio-meta">
+              <span class="project-level">BTech Project</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="portfolio-title">Smart Fitness Tracking System</h3>
+            <p class="portfolio-description">Wearable fitness tracker with mobile app integration and health analytics.
+            </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Arduino Nano</span>
+              <span class="tech-tag">Bluetooth</span>
+              <span class="tech-tag">Android</span>
+              <span class="tech-tag">Health APIs</span>
+            </div>
+            <div class="achievement-badges">
+              <span class="badge"><i class="fas fa-heart"></i> Health Focused</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Stats -->
+      <div class="portfolio-stats" style="margin-top: 4rem;">
+        <div class="stat-item">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Completed Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Universities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for project details -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalBody">
+        <!-- Project details will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3><i class="fas fa-graduation-cap"></i> VR-TechProject Solutions</h3>
+          <p>Your trusted partner for BTech and MTech project success.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Projects</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Software Development</a></li>
+            <li><a href="services.html">AI & Machine Learning</a></li>
+            <li><a href="services.html">Embedded Systems</a></li>
+            <li><a href="services.html">Data Analytics</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-phone"></i> +91 9494596314</p>
+          <p><i class="fas fa-envelope"></i> veerendra.embedded@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Khammam, Telangana</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 VR-TechProject Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Portfolio filtering functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all') {
+            item.classList.remove('hidden');
+          } else {
+            const categories = item.getAttribute('data-category').split(' ');
+            if (categories.includes(filterValue)) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('projectModal');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.querySelector('.close');
+
+    portfolioItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const title = item.querySelector('.portfolio-title').textContent;
+        const description = item.querySelector('.portfolio-description').textContent;
+        const techTags = Array.from(item.querySelectorAll('.tech-tag')).map(tag => tag.textContent);
+
+        modalBody.innerHTML = `
+                    <h2>${title}</h2>
+                    <p>${description}</p>
+                    <h3>Technologies Used:</h3>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                        ${techTags.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <h3>Project Features:</h3>
+                    <ul style="margin-bottom: 2rem;">
+                        <li>Complete source code with documentation</li>
+                        <li>Database design and implementation</li>
+                        <li>User interface design</li>
+                        <li>Testing and deployment guide</li>
+                        <li>Presentation materials</li>
+                    </ul>
+                    <div style="text-align: center;">
+                        <a href="#contact" class="btn btn-primary">Request Similar Project</a>
+                    </div>
+                `;
+        modal.style.display = 'block';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Marketing Services - VR-TechProject Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Digital Marketing Specific Styles */
+    .digital-marketing-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 120px 0 80px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .digital-marketing-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      z-index: 1;
+    }
+
+    .digital-marketing-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .dm-hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .dm-hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dm-hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    .dm-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .dm-stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .dm-stat h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .dm-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .dm-service-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dm-service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .dm-service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .dm-service-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .dm-service-icon i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .dm-service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .dm-service-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .dm-features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .dm-features li {
+      padding: 0.5rem 0;
+      color: #555;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .dm-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .dm-pricing {
+      background: #f8f9ff;
+      padding: 80px 0;
+    }
+
+    .dm-pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .dm-pricing-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .dm-pricing-card.featured {
+      border: 3px solid #667eea;
+      transform: scale(1.05);
+    }
+
+    .dm-pricing-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #667eea;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .dm-price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+
+    .dm-price span {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .dm-testimonials {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 80px 0;
+      color: white;
+    }
+
+    .dm-testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .dm-testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dm-cta {
+      background: #333;
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .dm-cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .dm-hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .dm-services-grid,
+      .dm-pricing-grid,
+      .dm-testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .dm-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h2><i class="fas fa-graduation-cap"></i> VR-TechProject Solutions</h2>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="digital-marketing.html" class="nav-link">Digital Marketing</a></li>
+          <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Digital Marketing Hero Section -->
+  <section class="digital-marketing-hero">
+    <div class="container">
+      <div class="dm-hero-badge">
+        <i class="fas fa-rocket"></i>
+        <span>Digital Marketing Excellence by Veerendra B</span>
+      </div>
+      <h1 class="dm-hero-title">Grow Your Business Online</h1>
+      <p class="dm-hero-subtitle">
+        Transform your digital presence with our comprehensive digital marketing services. From social media management to SEO optimization, we help businesses reach their full potential in the digital world.
+      </p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">
+          <i class="fas fa-chart-line"></i>
+          Explore Services
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <i class="fas fa-phone"></i>
+          Get Free Consultation
+        </a>
+      </div>
+      <div class="dm-stats">
+        <div class="dm-stat">
+          <h3>100+</h3>
+          <p>Successful Campaigns</p>
+        </div>
+        <div class="dm-stat">
+          <h3>50+</h3>
+          <p>Happy Clients</p>
+        </div>
+        <div class="dm-stat">
+          <h3>300%</h3>
+          <p>Average ROI Increase</p>
+        </div>
+        <div class="dm-stat">
+          <h3>24/7</h3>
+          <p>Support Available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Marketing Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Digital Marketing Services</h2>
+        <p>Comprehensive digital solutions to boost your online presence and drive results</p>
+      </div>
+      <div class="dm-services-grid">
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fab fa-google"></i>
+          </div>
+          <h3>Search Engine Optimization (SEO)</h3>
+          <p>Improve your website's visibility on search engines and drive organic traffic with our advanced SEO strategies.</p>
+          <ul class="dm-features">
+            <li>Keyword Research & Analysis</li>
+            <li>On-Page & Technical SEO</li>
+            <li>Link Building Strategies</li>
+            <li>Local SEO Optimization</li>
+            <li>SEO Audit & Reporting</li>
+          </ul>
+        </div>
+
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3>Social Media Marketing</h3>
+          <p>Build and engage your audience across all major social media platforms with compelling content and strategies.</p>
+          <ul class="dm-features">
+            <li>Content Creation & Curation</li>
+            <li>Community Management</li>
+            <li>Social Media Advertising</li>
+            <li>Influencer Collaborations</li>
+            <li>Analytics & Reporting</li>
+          </ul>
+        </div>
+
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fas fa-mouse-pointer"></i>
+          </div>
+          <h3>Pay-Per-Click (PPC) Advertising</h3>
+          <p>Drive immediate traffic and conversions with targeted PPC campaigns across Google, Facebook, and other platforms.</p>
+          <ul class="dm-features">
+            <li>Google Ads Management</li>
+            <li>Facebook & Instagram Ads</li>
+            <li>Campaign Optimization</li>
+            <li>Conversion Tracking</li>
+            <li>ROI Maximization</li>
+          </ul>
+        </div>
+
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email Marketing</h3>
+          <p>Nurture leads and retain customers with personalized email campaigns that drive engagement and sales.</p>
+          <ul class="dm-features">
+            <li>Email Campaign Design</li>
+            <li>Automated Workflows</li>
+            <li>Segmentation & Personalization</li>
+            <li>A/B Testing</li>
+            <li>Performance Analytics</li>
+          </ul>
+        </div>
+
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fas fa-edit"></i>
+          </div>
+          <h3>Content Marketing</h3>
+          <p>Create valuable, relevant content that attracts and engages your target audience while building brand authority.</p>
+          <ul class="dm-features">
+            <li>Blog Writing & Management</li>
+            <li>Video Content Creation</li>
+            <li>Infographic Design</li>
+            <li>Content Strategy Planning</li>
+            <li>Content Distribution</li>
+          </ul>
+        </div>
+
+        <div class="dm-service-card">
+          <div class="dm-service-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Analytics & Reporting</h3>
+          <p>Track, measure, and optimize your digital marketing performance with comprehensive analytics and reporting.</p>
+          <ul class="dm-features">
+            <li>Google Analytics Setup</li>
+            <li>Custom Dashboard Creation</li>
+            <li>Monthly Performance Reports</li>
+            <li>ROI Tracking</li>
+            <li>Competitive Analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="dm-pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Digital Marketing Packages</h2>
+        <p>Choose the perfect plan for your business growth</p>
+      </div>
+      <div class="dm-pricing-grid">
+        <div class="dm-pricing-card">
+          <h3>Starter Package</h3>
+          <div class="dm-price">₹15,000<span>/month</span></div>
+          <ul class="dm-features">
+            <li>Basic SEO Optimization</li>
+            <li>Social Media Management (2 platforms)</li>
+            <li>Monthly Content Creation (10 posts)</li>
+            <li>Basic Analytics Reporting</li>
+            <li>Email Support</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="dm-pricing-card featured">
+          <h3>Professional Package</h3>
+          <div class="dm-price">₹30,000<span>/month</span></div>
+          <ul class="dm-features">
+            <li>Advanced SEO & Local SEO</li>
+            <li>Social Media Management (4 platforms)</li>
+            <li>Content Creation (20 posts/month)</li>
+            <li>PPC Campaign Management</li>
+            <li>Email Marketing Campaigns</li>
+            <li>Detailed Analytics & Reports</li>
+            <li>Phone & Email Support</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="dm-pricing-card">
+          <h3>Enterprise Package</h3>
+          <div class="dm-price">₹50,000<span>/month</span></div>
+          <ul class="dm-features">
+            <li>Complete SEO & Technical Audit</li>
+            <li>Full Social Media Management</li>
+            <li>Content Creation (40 posts/month)</li>
+            <li>Multi-Platform PPC Campaigns</li>
+            <li>Advanced Email Automation</li>
+            <li>Video Content Creation</li>
+            <li>24/7 Priority Support</li>
+            <li>Dedicated Account Manager</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="dm-testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Clients Say</h2>
+        <p>Real results from real businesses</p>
+      </div>
+      <div class="dm-testimonial-grid">
+        <div class="dm-testimonial-card">
+          <div class="testimonial-content">
+            <p>"VR-TechProject Solutions transformed our online presence completely. Our website traffic increased by 250% and leads by 180% within just 3 months. Veerendra's expertise in digital marketing is unmatched!"</p>
+            <div class="testimonial-author">
+              <h4>Rajesh Kumar</h4>
+              <span>CEO, TechStart Solutions</span>
+            </div>
+          </div>
+        </div>
+        <div class="dm-testimonial-card">
+          <div class="testimonial-content">
+            <p>"The social media campaigns managed by VR-TechProject Solutions helped us reach 50,000+ new customers. Our brand visibility improved dramatically, and we saw a 300% increase in social media engagement."</p>
+            <div class="testimonial-author">
+              <h4>Priya Sharma</h4>
+              <span>Marketing Director, E-Commerce Plus</span>
+            </div>
+          </div>
+        </div>
+        <div class="dm-testimonial-card">
+          <div class="testimonial-content">
+            <p>"Their PPC campaigns generated incredible ROI for our business. We achieved a 400% return on ad spend and reduced our customer acquisition cost by 60%. Highly recommended for any business!"</p>
+            <div class="testimonial-author">
+              <h4>Amit Patel</h4>
+              <span>Founder, Digital Innovations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="dm-cta">
+    <div class="container">
+      <h2>Ready to Grow Your Business?</h2>
+      <p>Let's discuss how our digital marketing services can help you achieve your business goals.</p>
+      <div class="dm-cta-buttons">
+        <a href="#contact" class="btn btn-primary btn-large">
+          <i class="fas fa-calendar"></i>
+          Schedule Free Consultation
+        </a>
+        <a href="tel:+919494596314" class="btn btn-secondary btn-large">
+          <i class="fas fa-phone"></i>
+          Call Now: +91 9494596314
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <p>Connect directly with Veerendra B for your digital marketing needs!</p>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p>+91 9494596314</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>veerendra.embedded@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Location</h3>
+              <p>Khammam, Telangana</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Your Phone" required>
+            </div>
+            <div class="form-group">
+              <select required>
+                <option value="">Select Service</option>
+                <option value="seo">SEO Optimization</option>
+                <option value="social-media">Social Media Marketing</option>
+                <option value="ppc">PPC Advertising</option>
+                <option value="email">Email Marketing</option>
+                <option value="content">Content Marketing</option>
+                <option value="analytics">Analytics & Reporting</option>
+                <option value="full-package">Complete Package</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-large">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3><i class="fas fa-graduation-cap"></i> VR-TechProject Solutions</h3>
+          <p>Your trusted partner for BTech, MTech projects and digital marketing success.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="services.html">Technical Projects</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="index.html#iot-solutions">IoT Solutions</a></li>
+            <li><a href="index.html#embedded-projects">Embedded Systems</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Digital Marketing</h4>
+          <ul>
+            <li><a href="#services">SEO Optimization</a></li>
+            <li><a href="#services">Social Media Marketing</a></li>
+            <li><a href="#services">PPC Advertising</a></li>
+            <li><a href="#services">Content Marketing</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-phone"></i> +91 9494596314</p>
+          <p><i class="fas fa-envelope"></i> veerendra.embedded@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Khammam, Telangana</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 VR-TechProject Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
